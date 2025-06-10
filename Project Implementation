@@ -1,0 +1,131 @@
+````markdown
+# 📘 Project Implementation Guide — Banking Management System
+
+This guide outlines how to implement the project according to academic rubrics and GitHub-ready standards.
+
+---
+
+## 1. Prerequisites
+
+* **JDK Installation**: Java Development Kit (JDK) 11 or higher must be installed. Set `JAVA_HOME` and update system `PATH`.
+* **IDE Setup**: Use IntelliJ IDEA, Eclipse, or VS Code with Java and Maven support.
+* **Maven**: Ensure Maven 3.6+ is installed and configured.
+* **Git & GitHub**: Set up Git locally with SSH or HTTPS and create a GitHub repository (e.g., `BankingManagementSystem`).
+
+---
+
+## 2. Define Project & Repository Structure
+
+On GitHub, initialize the repository with:
+
+* `README.md`: Detailed project overview
+* `LICENSE`: MIT License
+* `.gitignore`: Ignore `/target`, IDE configs, logs, and `accounts.txt`
+* `docs/`: Optional documentation folder
+* `.github/`: GitHub Actions workflows
+* `src/` directory:
+  * `src/main/java/com/bankapp/` – Main application code
+  * `src/test/java/com/bankapp/` – Unit tests (optional)
+
+---
+
+## 3. Maintain Proper File & Package Structure
+
+Organize classes logically:
+
+1. `model/`: Account classes (abstract base + Savings/Current)
+2. `dao/`: Data Access Interfaces & Implementations
+3. `service/`: Business logic handlers
+4. `ui/`: Console and GUI front ends
+5. `util/`: (Optional) for reusable helper functions
+
+---
+
+## 4. Auto-Generation of Data File
+
+* Check if `accounts.txt` exists on startup.
+* If not, create it automatically and initialize as empty.
+* Include this logic in the `FileAccountDAO` constructor.
+
+---
+
+## 5. Implement I/O Connectivity
+
+* Use `BufferedReader` and `BufferedWriter` for file read/write.
+* Data is stored in `accounts.txt` in CSV-like format.
+* Wrap I/O operations in try-catch to handle `FileNotFoundException`, `IOException`.
+
+---
+
+## 6. Layered Architecture for CRUD
+
+* **DAO Layer**:
+  * Interface: `AccountDAO`
+  * Implementation: `FileAccountDAO`
+* **Service Layer**:
+  * Class: `BankService`
+  * Handles deposit, withdraw, create account, interest, etc.
+* **UI Layer**:
+  * Console: `ConsoleUI`
+  * GUI: `SwingUI` with `JFrame`, `JButton`, etc.
+
+Each layer handles only its specific responsibility.
+
+---
+
+## 7. Input Validation
+
+* Validate all user inputs:
+  * Name: Not empty
+  * Amount: Must be > 0
+  * Account type: Must match enum or valid string value
+* Validation should be done in the Service Layer or UI input methods.
+
+---
+
+## 8. Accuracy of Output
+
+* Display monetary values up to two decimal places using:
+  ```java
+  String.format("%.2f", value);
+````
+
+* Use clear console messages:
+
+  * Example: `"Your current balance is ₹5,000.00"`
+* Format account listings in columns for readability.
+
+---
+
+## 9. Error Messages and User Feedback
+
+* Provide clear and concise messages:
+
+  * Invalid input: `"Invalid amount. Must be greater than zero."`
+  * File not found: `"Warning: Data file missing. Creating new..."`
+  * Overdraft: `"Transaction denied. Overdraft limit is ₹10,000."`
+* Optional: Log errors to file or display popups in GUI.
+
+---
+
+## 10. Continuous Integration (CI)
+
+Add GitHub Actions in `.github/workflows/java-ci.yml`:
+
+```yaml
+name: Java CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+    - name: Build with Maven
+      run: mvn clean install
+```
