@@ -1,0 +1,23 @@
+bank-management-system/
+├── .gitignore
+├── README.md
+├── pom.xml
+├── accounts.txt
+├── src/
+│   └── main/
+│       └── java/
+│           └── com/bankapp/
+│               ├── model/
+│               │   ├── Account.java
+│               │   ├── SavingsAccount.java
+│               │   └── CurrentAccount.java
+│               ├── dao/
+│               │   ├── AccountDAO.java
+│               │   └── FileAccountDAO.java
+│               ├── service/
+│               │   └── BankService.java
+│               ├── ui/
+│               │   ├── SwingUI.java
+│               │   └── ConsoleUI.java
+│               └── BankingApplication.java
+└── LICENSE
