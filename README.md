@@ -1,5 +1,3 @@
-
-```markdown
 # 🏦 Banking Management System
 
 A Java-based multi-user Banking Management System with both **Console** and **Swing GUI** interfaces. Built using Java, this project supports account creation, transaction processing, interest calculations, and file-based data persistence.
