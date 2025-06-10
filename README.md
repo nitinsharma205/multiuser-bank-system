@@ -26,12 +26,6 @@ A Java-based multi-user Banking Management System with both **Console** and **Sw
 - **Java I/O** (file handling)
 - **OOP** principles with abstract classes and inheritance
 
----
-
-
-
----
-
 ## 🚀 How to Run
 
 ### 1️⃣ Prerequisites
